@@ -142,6 +142,25 @@ function Tree(){
         callback(root.data);
     }
 
+    this.levelOrder = function(callback){
+        levelOrder(this.root,callback);
+    }
+
+    function levelOrder(root,callback){
+        if (!root)
+            return;
+        let queue = [];
+        queue.push(root);
+        while (queue.length){
+            let node = queue.shift();
+            callback(node.data);
+            if (node.left)
+                queue.push(node.left);
+            if (node.right)
+                queue.push(node.right);
+        }
+    }
+
     this.height = function(node){
         return height(node);
     }
